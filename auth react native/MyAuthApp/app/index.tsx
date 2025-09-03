@@ -1,13 +1,18 @@
-import { useRouter } from "expo-router";
-import { Button, View } from "react-native";
+import { Link } from "expo-router";
+import { Text, View } from "react-native";
+import mainStyles from "./styles/main";
 
-export default function Home() {
-  const router = useRouter();
+export default function Index() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Button title="Go to Login" onPress={() => router.push("../module/auth/pages/LoginPage")} />
-      <Button title="Go to Register" onPress={() => router.push("../module/auth/pages/RegisterPage")} />
-
+    <View
+      style={mainStyles.view}
+    >
+      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Link 
+        href="/module/auth/pages/LoginPage" 
+        style={mainStyles.navButton}>
+              Login
+      </Link>
     </View>
   );
 }

@@ -1,14 +1,38 @@
+import { Stack } from "expo-router";
+import { Button } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
     <Provider store={store}>
-      <Stack>
-        <Stack.Screen name="index" options={{ title: "Home" }} />
-        <Stack.Screen name="module/auth/page/LoginPage" options={{ title: "Login" }} />
-        <Stack.Screen name="module/auth/page/RegisterPage" options={{ title: "Register" }} />
+      <Stack screenOptions={{}}>
+        <Stack.Screen
+          name="index"
+          options={{
+            title: "หน้าแรก",
+            headerTintColor: "#f4511e", 
+            headerTitleStyle: { fontWeight: "bold" }, 
+            headerShown: true,
+            headerTransparent: true, 
+          }}
+        />
+      <Stack.Screen
+          name="module/auth/pages/LoginPage"
+          options={({ navigation }) => ({
+            title: "เข้าสู่ระบบ",
+            headerBackVisible: false,
+            headerTransparent: true,
+            headerRight: () => (
+              <Button
+                onPress={() => navigation.navigate("module/auth/pages/RegisterPage")}
+                title="Register"
+                color={"#f4511e"}
+              />
+            ),
+            presentation: "modal",
+          })}
+        />
       </Stack>
     </Provider>
   );
