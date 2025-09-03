@@ -21,7 +21,11 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   const { username, password } = req.body;
   setTimeout(() => {
+    if (username === "test") {
     res.json({ message: `User ${username} registered successfully` });
+    } else {
+      res.status(400).json({ error: "Username already exists" });
+    }
   }, 1000);
 });
 
